@@ -8,16 +8,28 @@
  * Return: void.
  */
 
-void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h = *stack;
+	stack_t *temp = NULL;
 
-	if (h == NULL)
-		return;
-
-	while (h != NULL)
+	if (*stack == NULL)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		return;
 	}
+	if (*stack == NULL && line_number != 1)
+	{
+		free_dlistint(*stack);
+		free_globalvars();
+		exit(EXIT_SUCCESS);
+	}
+	temp = *stack;
+	while (temp->next != NULL)
+	temp = temp->next;
+	while (temp->prev != NULL)
+	{
+		printf("%d", temp->n);
+		temp = temp->prev;
+		printf("\n");
+	}
+	printf("%d\n", temp->n);
 }
