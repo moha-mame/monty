@@ -8,21 +8,22 @@
  * Return: void.
  */
 
-void _swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *node = *stack;
+stack_t *temp;
+int i, j;
 
-	if (node == NULL || node->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		if (node != NULL)
-			free(node);
-		close(fd);
-		exit(EXIT_FAILURE);
-	}
-	node->next->prev = NULL;
-	node->prev = node->next;
-	node->next = node->next->next;
-	node->prev->next = node;
-	*stack = node->prev;
+if (*stack == NULL || stack == NULL)
+op_e(line_number, "swap");
+temp = (*stack)->next;
+if ((*stack)->next == NULL)
+op_e(line_number, "swap");
+while (temp->next != NULL)
+{
+	temp = temp->next;
+}
+i = temp->n;
+j = temp->prev->n;
+temp->n = j;
+temp->prev->n = i;
 }

@@ -7,15 +7,18 @@
  *
  * Return: void.
  */
-
-void _pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
-	if (*stack == NULL)
-	{
-		fprintf(stderr, "L%d : can't pint, stack empty\n", line_number);
-		close(fd);
-		exit(EXIT_FAILURE);
-	}
+	stack_t *temp = NULL;
 
-	printf("%d\n", (*stack)->n);
+	if (stack == NULL || *stack == NULL)
+	{
+		pint_e(line_number);
+		return;
+	}
+	temp = *stack;
+	while (temp->next != NULL)
+	temp = temp->next;
+	printf("%d", temp->n);
+	printf("\n");
 }
